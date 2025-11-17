@@ -1,5 +1,5 @@
-
-export const up = async function(knex) {
+/** @param {import('knex').Knex} knex */
+export async function up(knex)  {
     const exists = await knex.schema.hasTable('usuarios');
     if (!exists) {
         return knex.schema.createTable('usuarios', function(table) {
@@ -12,6 +12,7 @@ export const up = async function(knex) {
 };
 
 
-export const down = function(knex) {
+/** @param {import('knex').Knex} knex */
+export async function down(knex) {
     return knex.schema.dropTableIfExists('usuarios')
 };

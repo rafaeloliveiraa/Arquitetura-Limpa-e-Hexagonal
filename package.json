@@ -8,9 +8,9 @@
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
     "test": "jest",
-    "migrate:make": "knex migrate:make --knexfile ./src/exemplo/adaptadores/db/knex/knexfile.js --knexpath ./src/exemplo/adaptadores/db/knex",
-    "migrate:down": "knex migrate:rollback --knexfile ./src/exemplo/adaptadores/db/knex/knexfile.js",
-    "migrate:up": "knex migrate:latest --knexfile ./src/exemplo/adaptadores/db/knex/knexfile.js"
+    "migrate:make": "knex migrate:make --knexfile ./src/adapters/db/knexfile.js --knexpath ./src/adapters/db",
+    "migrate:down": "knex migrate:rollback --knexfile ./src/adapters/db/knexfile.js",
+    "migrate:up": "knex migrate:latest --knexfile ./src/adapters/db/knexfile.js"
   },
   "keywords": [],
   "author": "Rafael de Oliveira",
