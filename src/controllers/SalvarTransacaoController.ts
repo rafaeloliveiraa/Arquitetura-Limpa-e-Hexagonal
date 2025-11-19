@@ -10,12 +10,26 @@ export default class SalvarTransacaoController {
     ) {
         const fn = async (req: Request, res: Response) => {
             try {
-            const resposta = await this.casoDeUso.executar()
-            res.status(200).json(resposta); 
+                const transacao = {
+                    descricao: req.body.descricao,
+                    valor: +req.body.valor,
+                    vencimento: new Date(req.body.vencimento),
+                    idUsuario: req.body.idUsuario,
+                }
+
+            await this.casoDeUso.executar({
+                transacao: transacao,
+                id: req.params.id as string,
+                usuario: (req as any).usuario,
+            })
+            res.status(200).send(); 
             } catch (e: any) {
                 res.status(400).send(e.message);
             }
         }
+        //inserir
         this.servidor.post('/transacao', middleware, fn);
+        //atualizar
+        this.servidor.put('/transacao/:id', middleware, fn);
     }
 }

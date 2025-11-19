@@ -11,6 +11,7 @@ import JwtAdapter from "./adapters/auth/JwtAdapter";
 import SalvarTransacao from "./core/transacao/SalvarTransacao";
 import SalvarTransacaoController from "./controllers/SalvarTransacaoController";
 import UsuarioMiddleware from "./controllers/UsuarioMiddleware";
+import ColecaoTransacaoDB from "./adapters/db/ColecaoTransacaoDB";
 
 const app = express();
 const porta = process.env.PORTA ?? 3001;
@@ -44,7 +45,8 @@ new LoginUsuarioController(app, loginUsuario);
 //------------------------------------------------------------------ Rotas protegidas
 const usuarioMiddleware = UsuarioMiddleware(colecaoUsuario, ProvedorToken);
 
+const colecaoTransacao = new ColecaoTransacaoDB();
 //registrar caso de uso
-const salvarTransacao = new SalvarTransacao();
+const salvarTransacao = new SalvarTransacao(colecaoTransacao);
 //registrar controller
 new SalvarTransacaoController(app, salvarTransacao, usuarioMiddleware);

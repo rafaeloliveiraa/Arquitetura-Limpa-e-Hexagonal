@@ -4,11 +4,9 @@ dotenv.config({ path: '../../../.env' });
 /** @type {import('knex').Knex.Config} */
 const config = {
     client: 'pg',
-    connection: process.env.BD_URL,
+    connection: 'postgres://postgres:root@localhost:5432/arquitetura',
     migrations: {
         tableName: 'knex_migrations',
-        extension: 'js', // importante para ESM
-        directory: './migrations'
     },
     pool: {
         min: 2,
